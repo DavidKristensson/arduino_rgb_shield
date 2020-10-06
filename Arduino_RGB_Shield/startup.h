@@ -1,3 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void startup(){ 
   changeColor(max, 0, 0);
   delay(500);

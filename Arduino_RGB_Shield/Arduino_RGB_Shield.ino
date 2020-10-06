@@ -2,8 +2,6 @@
 #define blue 10
 #define red 11
 #define pot A0
-#define key1 8
-#define key2 12
 
 int potValue = 0;
 unsigned long millisPrevious = 0; 
@@ -20,6 +18,9 @@ const int intervalRGB = 300;
 unsigned long millisPreviousFade = 0;
 const int intervalFade = 10;
 
+unsigned long millisPreviousPot = 0;
+const int intervalPot = 5;
+
 int max = 100;
 
 int r = 100, g = 1, b = 50;
@@ -31,6 +32,8 @@ bool rainbowActive;
 String commandToParse;
 String directory;
 String printToMonitor;
+int potValueLast;
+bool serialPotActive = false;
 
 bool printStatus = false;
 bool skipStateChanger = false;
@@ -47,10 +50,11 @@ struct Button{
   bool reading;
   bool state;
   unsigned long debounceTimeLast;
+  bool active;
 };
 
-Button button1 = {8, 10, LOW, LOW, LOW, 0};
-Button button2 = {12, 10, LOW, LOW, LOW, 0};
+Button button1 = {2, 10, LOW, LOW, LOW, 0, false};
+Button button2 = {3, 10, LOW, LOW, LOW, 0, false};
 
 enum STATE_MACHINE{
   STARTUP,    // 0
@@ -64,15 +68,17 @@ enum STATE_MACHINE{
 
 STATE_MACHINE stateMachine = STARTUP;
 
-#include "debounceButton.h"
+#include "ctype.h"
 #include "potHandler.h"
+#include "changeColor.h"
+#include "debounceButton.h"
 #include "directoryHandler.h"
 #include "parser.h"
 #include "commandHandler.h"
+#include "commandHandler2.h"
 #include "doShit.h"
 #include "uart.h"
 #include "input.h"
-#include "changeColor.h"
 #include "startup.h"
 #include "rainbow.h"
 #include "rgb.h"
@@ -80,8 +86,8 @@ STATE_MACHINE stateMachine = STARTUP;
 #include "doStuff2.h"
 #include "stateChanger.h"
 
-void setup() {
-  Serial.begin(9600);
+void setup() { //Spara förra statet så jag kan släcka rgb när den byts bort
+  Serial.begin(9600); 
   pinMode(blue, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(red, OUTPUT);
@@ -89,6 +95,9 @@ void setup() {
   pinMode(button1.pin, INPUT);
   pinMode(button2.pin, INPUT);
   startup();
+  potValue = analogRead(pot);
+  potValueLast = potValue;
+  //attachInterrupt(digitalPinToInterrupt(button1.pin), 
 }
 
 void loop() {

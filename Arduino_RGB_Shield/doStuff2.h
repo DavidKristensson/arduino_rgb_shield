@@ -1,3 +1,22 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void doStuff2(){
   if(stateMachine == MAIN){
     fade();
@@ -9,12 +28,18 @@ void doStuff2(){
     rgb();
   }
   else if(stateMachine == RED){
-    changeRed(rgbHue);
+    if(serialPotActive== false){
+      changeRed(rgbHue);
+    }
   }
   else if(stateMachine == GREEN){
-    changeGreen(rgbHue);
+    if(serialPotActive== false){
+      changeGreen(rgbHue);
+    }
   }
   else if(stateMachine == BLUE){
-    changeBlue(rgbHue);
+    if(serialPotActive == false){
+      changeBlue(rgbHue);
+    }
   }
 }

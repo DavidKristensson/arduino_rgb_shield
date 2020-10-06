@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 void commandHandler(){
   printToMonitor = directory;
   if(command1 == "ls"){

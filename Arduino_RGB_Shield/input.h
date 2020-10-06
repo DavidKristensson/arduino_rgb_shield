@@ -1,3 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void input(){
   millisCurrent = millis();
   button1 = debounceButton(button1);

@@ -1,8 +1,25 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void doShit(){
   if(commandToParse != "" && printStatus == true){
     directoryHandler();
     parser();
-    commandHandler();
+    commandHandler2();
     Serial.println(printToMonitor);
     printStatus = false;
   }
