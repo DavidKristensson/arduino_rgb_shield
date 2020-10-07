@@ -18,6 +18,7 @@ void commandHandlerRainbow(){
   }
   else if(command1.toInt() != false || command1.toInt() == 0){
     serialPotActive  = true;
+    changeLastPotValue = true;
     intervalRainbow = command1.toInt();
   }
 }
@@ -64,6 +65,7 @@ void commandHandlerRed(){
   }
   else if(command1.toInt() != false || command1.toInt() == 0){
     serialPotActive  = true;
+    changeLastPotValue = true;
     changeRed(command1.toInt());
   }
 }
@@ -90,6 +92,7 @@ void commandHandlerGreen(){
   }
   else if(command1.toInt() != false || command1.toInt() == 0){
     serialPotActive  = true;
+    changeLastPotValue = true;
     changeGreen(command1.toInt());
   }
 }
@@ -116,6 +119,7 @@ void commandHandlerBlue(){
   }
   else if(command1.toInt() != false || command1.toInt() == 0){
     serialPotActive  = true;
+    changeLastPotValue = true;
     changeBlue(command1.toInt());
   }
 }
@@ -124,6 +128,10 @@ void commandHandlerBlue(){
 
 void commandHandler2(){
   printToMonitor = directory;
+
+  if(command1 == "help"){
+    printToMonitor += "\nAvailable commands: ls, cd [directory], cd.., on, off and value";
+  }
   if(stateMachine == MAIN){
     commandHandlerMain();
   }

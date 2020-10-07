@@ -19,7 +19,7 @@ unsigned long millisPreviousFade = 0;
 const int intervalFade = 10;
 
 unsigned long millisPreviousPot = 0;
-const int intervalPot = 5;
+const int intervalPot = 2000;
 
 int max = 100;
 
@@ -34,6 +34,7 @@ String directory;
 String printToMonitor;
 int potValueLast;
 bool serialPotActive = false;
+bool changeLastPotValue = false;
 
 bool printStatus = false;
 bool skipStateChanger = false;
@@ -73,8 +74,7 @@ STATE_MACHINE stateMachine = STARTUP;
 #include "changeColor.h"
 #include "debounceButton.h"
 #include "directoryHandler.h"
-#include "parser.h"
-#include "commandHandler.h"
+#include "parser.h"     
 #include "commandHandler2.h"
 #include "doShit.h"
 #include "uart.h"
@@ -101,8 +101,7 @@ void setup() { //Spara förra statet så jag kan släcka rgb när den byts bort
   attachInterrupt(digitalPinToInterrupt(button2.pin), my_interrupt_handler2, RISING);
 }
 
-void my_interrupt_handler1()
-{
+void my_interrupt_handler1(){
  static unsigned long last_interrupt_time = 0;
  unsigned long interrupt_time = millis();
  // If interrupts come faster than 200ms, assume it's a bounce and ignore
@@ -112,8 +111,8 @@ void my_interrupt_handler1()
  }
  last_interrupt_time = interrupt_time;
 }
-void my_interrupt_handler2()
-{
+
+void my_interrupt_handler2(){
  static unsigned long last_interrupt_time = 0;
  unsigned long interrupt_time = millis();
  // If interrupts come faster than 200ms, assume it's a bounce and ignore

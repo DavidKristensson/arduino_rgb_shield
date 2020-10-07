@@ -28,9 +28,7 @@ void stateChanger(){
   else if(stateMachine == RED){
     if(button1.active == true){
       stateMachine = GREEN;
-      if(serialPotActive  == true){
-        button1.active = false; 
-      }
+      button1.active = false; 
     }
     else if(button2.active == true){
       stateMachine = RGB;
@@ -40,9 +38,7 @@ void stateChanger(){
   else if(stateMachine == GREEN){
     if(button1.active == true){
       stateMachine = BLUE;
-      if(serialPotActive == true){
-        button1.active = false;
-      }
+      button1.active = false;
     }
     else if(button2.active == true){
       stateMachine = RGB;
@@ -52,9 +48,7 @@ void stateChanger(){
   else if(stateMachine == BLUE){
     if(button1.active == true){
       stateMachine = RED;
-      if(serialPotActive == true){
-        button1.active = false;
-      }
+      button1.active = false;
     }
     else if(button2.active == true){
       stateMachine = RGB;
