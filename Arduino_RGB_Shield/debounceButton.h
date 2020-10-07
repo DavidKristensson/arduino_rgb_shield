@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 Button debounceButton(Button buttonNumber){ //Fixa knappbool piss
   buttonNumber.reading = digitalRead(buttonNumber.pin);
   if (buttonNumber.reading != buttonNumber.stateLast) {

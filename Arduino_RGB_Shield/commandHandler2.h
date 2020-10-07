@@ -1,6 +1,6 @@
 void commandHandlerMain(){
   if(command1 == "ls"){
-    printToMonitor += "rainbow   rgb";
+    printToMonitor += "   rainbow   rgb";
   }  
   else if(command1 == "cd"){
     if(command2 == "rgb"){

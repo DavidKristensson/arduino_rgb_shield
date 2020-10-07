@@ -1,19 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void uart(){
   if(Serial.available() > 0){
     char c = Serial.read();

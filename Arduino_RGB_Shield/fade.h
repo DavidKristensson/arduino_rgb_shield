@@ -1,21 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void fade(){
   if(millisCurrent - millisPreviousFade >= intervalFade){
     millisPreviousFade = millisCurrent;

@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void doShit(){
   if(commandToParse != "" && printStatus == true){
     directoryHandler();

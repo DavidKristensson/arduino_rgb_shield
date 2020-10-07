@@ -1,17 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void stateChanger(){
   if(stateMachine == MAIN){
     if(button1.active == true){

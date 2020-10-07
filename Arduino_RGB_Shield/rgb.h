@@ -1,19 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void rgb(){
   if(millisCurrent - millisPreviousRGB >= intervalRGB){
     millisPreviousRGB = millisCurrent;

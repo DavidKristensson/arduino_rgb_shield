@@ -1,16 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
 void directoryHandler(){
   if(stateMachine == MAIN){
     directory = "/main$ ";

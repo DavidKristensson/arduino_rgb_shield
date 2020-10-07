@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void doStuff2(){
   if(stateMachine == MAIN){
     fade();

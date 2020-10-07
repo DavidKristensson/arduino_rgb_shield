@@ -87,7 +87,7 @@ STATE_MACHINE stateMachine = STARTUP;
 #include "stateChanger.h"
 
 void setup() { //Spara förra statet så jag kan släcka rgb när den byts bort
-  Serial.begin(9600); 
+  Serial.begin(115200); 
   pinMode(blue, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(red, OUTPUT);
@@ -97,7 +97,31 @@ void setup() { //Spara förra statet så jag kan släcka rgb när den byts bort
   startup();
   potValue = analogRead(pot);
   potValueLast = potValue;
-  //attachInterrupt(digitalPinToInterrupt(button1.pin), 
+  attachInterrupt(digitalPinToInterrupt(button1.pin), my_interrupt_handler1, RISING);
+  attachInterrupt(digitalPinToInterrupt(button2.pin), my_interrupt_handler2, RISING);
+}
+
+void my_interrupt_handler1()
+{
+ static unsigned long last_interrupt_time = 0;
+ unsigned long interrupt_time = millis();
+ // If interrupts come faster than 200ms, assume it's a bounce and ignore
+ if (interrupt_time - last_interrupt_time > 20)
+ {
+   button1.active = true;
+ }
+ last_interrupt_time = interrupt_time;
+}
+void my_interrupt_handler2()
+{
+ static unsigned long last_interrupt_time = 0;
+ unsigned long interrupt_time = millis();
+ // If interrupts come faster than 200ms, assume it's a bounce and ignore
+ if (interrupt_time - last_interrupt_time > 20)
+ {
+   button2.active = true;
+ }
+ last_interrupt_time = interrupt_time;
 }
 
 void loop() {
